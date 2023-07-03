@@ -1,0 +1,29 @@
+{
+    "name": "szopen/simple-access-control",
+    "description": "A permission checker system based on description label defined actions",
+    "type": "library",
+    "require": {
+            "php": "^8.0|^8.1|^8.2"
+    },
+    "require-dev": {
+        "webmozart/assert": "^1.11",
+        "vimeo/psalm": "^5.13",
+        "friendsofphp/php-cs-fixer": "^3.20",
+        "phpunit/phpunit": "^10.2"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Szopen\\SimpleAccessControl\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Leandro Luccerini",
+            "email": "leandro.luccerini@gmail.com"
+        }
+    ],
+    "config": {
+        "vendor-dir": "./vendor"
+    }
+}
