@@ -3,7 +3,7 @@
     "description": "A permission checker system based on description label defined actions",
     "type": "library",
     "require": {
-            "php": "^8.0|^8.1|^8.2"
+        "php": "^8.0|^8.1|^8.2"
     },
     "require-dev": {
         "webmozart/assert": "^1.11",
@@ -14,7 +14,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Szopen\\SimpleAccessControl\\": "src/"
+            "Szopen\\SimpleAccessControl\\": "src/",
+            "Test\\Szopen\\SimpleAccessControl\\": "test/"
         }
     },
     "authors": [
@@ -25,5 +26,10 @@
     ],
     "config": {
         "vendor-dir": "./vendor"
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit ./test --testdox --colors",
+        "csfix": "./vendor/bin/php-cs-fixer fix ./src",
+        "psalm": "./vendor/bin/psalm"
     }
 }
