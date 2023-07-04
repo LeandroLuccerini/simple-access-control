@@ -1,6 +1,6 @@
 # Simple Access Control
 
-This project is about a simple system to check permissions about a textual label based action. 
+This project is about a simple system to check permissions about a textual labeled action. 
 
 The base concept is that you can define an [Action](./src/Domain/Action.php) that describes a possible process, then is possible to define a [Permission](./src/Domain/Permission.php) that allows or deny that action.
 
@@ -16,7 +16,7 @@ $canViewProductDetailPermission = new Permission($productDetailViewAction, true)
 Using the `PermissionCheckerStrategy` it's possible to check if a given `Action` is allowed or not against a [PermissionsCollection](./src/Domain/PermissionsCollection.php).
 There are two types of strategies already defined:
 - [Affirmative](./src/Domain/Checker/AffirmativePermissionCheckerStrategy.php): grants access as soon as there is one permission granting access;
-- [Unanimous](./src/Domain/Checker/UnanimousPermissionCheckerStrategy.php): only grants access if there is no voter denying access.
+- [Unanimous](./src/Domain/Checker/UnanimousPermissionCheckerStrategy.php): only grants access if there is no permission denying access.
 
 ```php
 <?php
@@ -53,8 +53,8 @@ $isAllowed = $strategy->canPerformAction(
 ```
 
 ### Services
-As common use case there's the [UserAuthorizationService](./src/Application/UserAuthorizationService.php) that, given a [UserWithPermission](./src/Domain/User/UserWithPermissions.php) and an `Action`, has the capability to check if the user is allowed to perform the action.
-`UserWithPermission` it's the helper interface that you must to implement to take advantage of the service.
+As common use case the package offers the [UserAuthorizationService](./src/Application/UserAuthorizationService.php) that, given a [UserWithPermission](./src/Domain/User/UserWithPermissions.php) and an `Action`, has the capability to check if the user is allowed to perform the action.
+`UserWithPermission` is the helper interface that you must implement to take advantage of the service.
 
 ```php
 <?php
