@@ -7,7 +7,7 @@ use Szopen\SimpleAccessControl\Domain\Action;
 
 class ActionTest extends TestCase
 {
-    public function testEqualMustReturnFalseDueToDifferentNameIdentifier()
+    public function testEqualMustReturnFalseDueToDifferentNameIdentifier(): void
     {
         $action1 = new Action('action.1');
         $action2 = new Action('action.2');
@@ -15,7 +15,7 @@ class ActionTest extends TestCase
         self::assertFalse($action1->equal($action2));
     }
 
-    public function testEqualMustReturnFalseTrueToSameNameIdentifier()
+    public function testEqualMustReturnTrueDueToSameNameIdentifier(): void
     {
         $action1 = new Action('action.1');
         $action2 = new Action('action.1');
