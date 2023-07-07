@@ -10,7 +10,7 @@ use Szopen\SimpleAccessControl\Domain\PermissionsCollection;
 
 class PermissionsCollectionTest extends TestCase
 {
-    public function testInstantiationMustFailDueToNotAllowedClassInArray()
+    public function testInstantiationMustFailDueToNotAllowedClassInArray(): void
     {
         self::expectException(InvalidArgumentException::class);
 
@@ -20,7 +20,7 @@ class PermissionsCollectionTest extends TestCase
         ]);
     }
 
-    public function testInstantiationAcceptsEmptyArray()
+    public function testInstantiationAcceptsEmptyArray(): void
     {
         $collection = new PermissionsCollection([]);
 
@@ -28,7 +28,7 @@ class PermissionsCollectionTest extends TestCase
         self::assertCount(0, $collection);
     }
 
-    public function testMemoryUsageForTenThousandPermissionsMustBeUnderThreeMb()
+    public function testMemoryUsageForTenThousandPermissionsMustBeUnderThreeMb(): void
     {
         $mem = memory_get_usage();
         $permissions = [];

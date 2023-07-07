@@ -1,6 +1,6 @@
 <?php
 
-namespace Test\Szopen\SimpleAccessControl\Domain\Chekcer;
+namespace Test\Szopen\SimpleAccessControl\Domain\Checker;
 
 use PHPUnit\Framework\TestCase;
 use Szopen\SimpleAccessControl\Domain\Action;
@@ -11,7 +11,7 @@ use Szopen\SimpleAccessControl\Domain\PermissionsCollection;
 
 class UnanimousPermissionCheckerStrategyTest extends TestCase
 {
-    public function testActionCannotBePerformedDueToMissingPermission()
+    public function testActionCannotBePerformedDueToMissingPermission(): void
     {
         $permissions = [
             new Permission(new Action('test.1'), true),
@@ -28,7 +28,7 @@ class UnanimousPermissionCheckerStrategyTest extends TestCase
         );
     }
 
-    public function testCheckingInTenThousandElementsPermissionCollectionMustRemainUnderTwoDotFiveMilliseconds()
+    public function testCheckingInTenThousandElementsPermissionCollectionMustRemainUnderTwoDotFiveMilliseconds(): void
     {
         $permissions = [];
         for ($i = 0; $i < 10_000; $i++) {
@@ -48,7 +48,7 @@ class UnanimousPermissionCheckerStrategyTest extends TestCase
         self::assertLessThan(3, $executionTime);
     }
 
-    public function testActionCanBePerformedDueToExplicitAllowAndUnanimousAssertions()
+    public function testActionCanBePerformedDueToExplicitAllowAndUnanimousAssertions(): void
     {
         $permissions = [
             new Permission(new Action('test.1'), true),
@@ -65,7 +65,7 @@ class UnanimousPermissionCheckerStrategyTest extends TestCase
         );
     }
 
-    public function testActionCannotBePerformedDueToNotUnanimousAssertions()
+    public function testActionCannotBePerformedDueToNotUnanimousAssertions(): void
     {
         $permissions = [
             new Permission(new Action('test.1'), true),

@@ -12,7 +12,7 @@ use Szopen\SimpleAccessControl\Domain\User\UserWithPermissions;
 
 class UserAuthorizationServiceTest extends TestCase
 {
-    public function testCanUserPerformActionReturnsTrueDueToAffirmativeStrategy()
+    public function testCanUserPerformActionReturnsTrueDueToAffirmativeStrategy(): void
     {
         $service = new UserAuthorizationService(new AffirmativePermissionCheckerStrategy());
 
@@ -28,7 +28,7 @@ class UserAuthorizationServiceTest extends TestCase
         self::assertTrue($service->canUserPerformAction($user, new Action('test.action.2')));
     }
 
-    public function testCanUserPerformActionReturnsFalseDueToMissingPermission()
+    public function testCanUserPerformActionReturnsFalseDueToMissingPermission(): void
     {
         $service = new UserAuthorizationService(new AffirmativePermissionCheckerStrategy());
 

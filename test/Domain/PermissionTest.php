@@ -8,7 +8,7 @@ use Szopen\SimpleAccessControl\Domain\Permission;
 
 class PermissionTest extends TestCase
 {
-    public function testIsAppliedToMustReturnFalseDueToDifferentActions()
+    public function testIsAppliedToMustReturnFalseDueToDifferentActions(): void
     {
         $action = new Action('action.to.assign');
         $permission = new Permission($action, true);
@@ -18,7 +18,7 @@ class PermissionTest extends TestCase
         self::assertFalse($permission->isAppliedTo($actionToCheck));
     }
 
-    public function testIsAppliedToMustReturnTrueDueToTheSameAction()
+    public function testIsAppliedToMustReturnTrueDueToTheSameAction(): void
     {
         $action = new Action('action.test');
         $permission = new Permission($action, true);
