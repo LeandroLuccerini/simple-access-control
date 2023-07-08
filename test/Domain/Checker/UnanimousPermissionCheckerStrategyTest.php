@@ -30,7 +30,7 @@ class UnanimousPermissionCheckerStrategyTest extends TestCase
     }
 
     #[Group('MachineDependingTest')]
-    public function testCheckingInTenThousandElementsPermissionCollectionMustRemainUnderTwoDotFiveMilliseconds(): void
+    public function testCheckingInTenThousandElementsPermissionCollectionMustRemainUnderTwentyMilliseconds(): void
     {
         $permissions = [];
         for ($i = 0; $i < 10_000; $i++) {
