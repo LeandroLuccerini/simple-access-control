@@ -2,6 +2,7 @@
 
 namespace Test\Szopen\SimpleAccessControl\Domain\Checker;
 
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Szopen\SimpleAccessControl\Domain\Action;
 use Szopen\SimpleAccessControl\Domain\Checker\AffirmativePermissionCheckerStrategy;
@@ -27,6 +28,7 @@ class AffirmativePermissionCheckerStrategyTest extends TestCase
         );
     }
 
+    #[Group('MachineDependingTest')]
     public function testCheckingInTenThousandElementsPermissionCollectionMustRemainUnderTwoDotFiveMilliseconds(): void
     {
         $permissions = [];
