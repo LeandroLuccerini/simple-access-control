@@ -29,6 +29,7 @@
     },
     "scripts": {
         "test": "./vendor/bin/phpunit ./test --testdox --colors",
+        "test-github": "./vendor/bin/phpunit ./test --exclude-group=MachineDependingTest --testdox --colors",
         "csfix": "./vendor/bin/php-cs-fixer fix ./src",
         "psalm": "./vendor/bin/psalm"
     }
