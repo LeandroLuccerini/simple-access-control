@@ -83,7 +83,7 @@ $service = new UserAuthorizationService(
     new AffirmativePermissionCheckerStrategy()
 );
 // This returns `false`
-$isAllowed = $service->canUserPerformAction($user, new Action('product.detail.edit')));
+$isAllowed = $service->canUserPerformAction($user, new Action('product.detail.edit'));
 ```
 ### Tests
 To run all tests `composer test`
