@@ -14,7 +14,8 @@ class Action
         private string $nameIdentifier,
         private string $nameStructureSeparator = self::DEFAULT_SEPARATOR
     ) {
-        Assert::notEmpty($nameIdentifier);
+        Assert::notEmpty($nameIdentifier, "Name identifier must not be empty");
+        Assert::notEmpty($nameStructureSeparator, "Structure separator must not be empty");
     }
 
     public function equal(Action $action): bool

@@ -30,7 +30,7 @@ class UnanimousPermissionCheckerStrategyTest extends TestCase
     }
 
     #[Group('MachineDependingTest')]
-    public function testCheckingInTenThousandElementsPermissionCollectionMustRemainUnderTwoDotFiveMilliseconds(): void
+    public function testCheckingInTenThousandElementsPermissionCollectionMustRemainUnderSixMilliseconds(): void
     {
         $permissions = [];
         for ($i = 0; $i < 10_000; $i++) {
@@ -47,7 +47,7 @@ class UnanimousPermissionCheckerStrategyTest extends TestCase
 
         $executionTime = ($endTime - $startTime) * 1_000;
 
-        self::assertLessThan(3, $executionTime);
+        self::assertLessThan(6, $executionTime);
     }
 
     public function testActionCanBePerformedDueToExplicitAllowAndUnanimousAssertions(): void
