@@ -8,13 +8,29 @@ use Webmozart\Assert\Assert;
 
 class Action
 {
-    public function __construct(private string $nameIdentifier)
-    {
+    private const DEFAULT_SEPARATOR = ".";
+
+    public function __construct(
+        private string $nameIdentifier,
+        private string $nameStructureSeparator = self::DEFAULT_SEPARATOR
+    ) {
         Assert::notEmpty($nameIdentifier);
     }
 
     public function equal(Action $action): bool
     {
         return $this->nameIdentifier === $action->nameIdentifier;
+    }
+
+    public function isParentOf(Action $action): bool
+    {
+        $parentStructure = explode($this->nameStructureSeparator ?: self::DEFAULT_SEPARATOR, $this->nameIdentifier);
+        $childStructure = explode($this->nameStructureSeparator ?: self::DEFAULT_SEPARATOR, $action->nameIdentifier);
+
+        $lengthOfParentStructure = count($parentStructure);
+        $lengthOfChildStructure = count($childStructure);
+
+        return count(array_intersect_assoc($parentStructure, $childStructure)) === $lengthOfParentStructure
+            && $lengthOfParentStructure < $lengthOfChildStructure;
     }
 }

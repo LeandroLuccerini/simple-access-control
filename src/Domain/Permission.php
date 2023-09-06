@@ -14,7 +14,7 @@ class Permission
 
     public function isAppliedTo(Action $action): bool
     {
-        return $this->action->equal($action);
+        return $this->action->equal($action) || $this->action->isParentOf($action);
     }
 
     public function isAllowed(): bool
