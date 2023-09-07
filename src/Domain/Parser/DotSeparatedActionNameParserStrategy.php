@@ -10,9 +10,4 @@ class DotSeparatedActionNameParserStrategy implements ActionNameParserStrategy
     {
         return explode(self::DEFAULT_SEPARATOR, $name);
     }
-
-    public function isSeparator(string $separator): bool
-    {
-        return trim($separator) === self::DEFAULT_SEPARATOR;
-    }
 }

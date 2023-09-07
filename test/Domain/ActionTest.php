@@ -6,7 +6,6 @@ use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Szopen\SimpleAccessControl\Domain\Action;
-use Szopen\SimpleAccessControl\Domain\Parser\ActionNameParserStrategy;
 use Szopen\SimpleAccessControl\Domain\Parser\DotSeparatedActionNameParserStrategy;
 
 class ActionTest extends TestCase
