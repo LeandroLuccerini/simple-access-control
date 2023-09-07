@@ -2,12 +2,24 @@
 
 namespace Test\Szopen\SimpleAccessControl\Domain;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Szopen\SimpleAccessControl\Domain\Action;
+use Szopen\SimpleAccessControl\Domain\Parser\ActionNameParserStrategy;
+use Szopen\SimpleAccessControl\Domain\Parser\DotSeparatedActionNameParserStrategy;
 
 class ActionTest extends TestCase
 {
+
+    public function testInstantiationMustFailDueToEmptyName(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Name identifier must not be empty");
+
+        new Action("");
+    }
+
     public function testEqualMustReturnFalseDueToDifferentNameIdentifier(): void
     {
         $action1 = new Action('action.1');
@@ -44,8 +56,8 @@ class ActionTest extends TestCase
     #[DataProvider("actionTrueHierarchicalStructureDataProvider")]
     public function testIsParentOfMustReturnTrue(string $parent, string $child): void
     {
-        $parent = new Action($parent);
-        $child = new Action($child);
+        $parent = new Action($parent, new DotSeparatedActionNameParserStrategy());
+        $child = new Action($child, new DotSeparatedActionNameParserStrategy());
 
         self::assertTrue($parent->isParentOf($child));
     }
