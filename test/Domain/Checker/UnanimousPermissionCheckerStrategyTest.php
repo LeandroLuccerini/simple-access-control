@@ -9,6 +9,7 @@ use Szopen\SimpleAccessControl\Domain\Checker\AffirmativePermissionCheckerStrate
 use Szopen\SimpleAccessControl\Domain\Checker\UnanimousPermissionCheckerStrategy;
 use Szopen\SimpleAccessControl\Domain\Permission;
 use Szopen\SimpleAccessControl\Domain\PermissionsCollection;
+use Test\Szopen\SimpleAccessControl\Domain\Parser\DotSeparatedActionNameParserStrategyStub;
 
 class UnanimousPermissionCheckerStrategyTest extends TestCase
 {
@@ -79,6 +80,24 @@ class UnanimousPermissionCheckerStrategyTest extends TestCase
         self::assertFalse(
             $strategy->canPerformAction(
                 new Action('test.1'),
+                new PermissionsCollection($permissions)
+            )
+        );
+    }
+
+    public function testActionCannotBePerformedDueToDeniedActionInChild(): void
+    {
+        $parser = new DotSeparatedActionNameParserStrategyStub();
+        $permissions = [
+            new Permission(new Action('root', $parser), true),
+            new Permission(new Action('root.child', $parser), false),
+        ];
+
+        $strategy = new UnanimousPermissionCheckerStrategy();
+
+        self::assertFalse(
+            $strategy->canPerformAction(
+                new Action('root.child', $parser),
                 new PermissionsCollection($permissions)
             )
         );

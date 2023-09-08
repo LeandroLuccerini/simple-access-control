@@ -8,6 +8,7 @@ use Szopen\SimpleAccessControl\Domain\Action;
 use Szopen\SimpleAccessControl\Domain\Checker\AffirmativePermissionCheckerStrategy;
 use Szopen\SimpleAccessControl\Domain\Permission;
 use Szopen\SimpleAccessControl\Domain\PermissionsCollection;
+use Test\Szopen\SimpleAccessControl\Domain\Parser\DotSeparatedActionNameParserStrategyStub;
 
 class AffirmativePermissionCheckerStrategyTest extends TestCase
 {
@@ -78,6 +79,24 @@ class AffirmativePermissionCheckerStrategyTest extends TestCase
         self::assertTrue(
             $strategy->canPerformAction(
                 new Action('test.1'),
+                new PermissionsCollection($permissions)
+            )
+        );
+    }
+
+    public function testActionCanBePerformedDuToAffirmativeAllowingOnParentAction(): void
+    {
+        $parser = new DotSeparatedActionNameParserStrategyStub();
+        $permissions = [
+            new Permission(new Action('root', $parser), true),
+            new Permission(new Action('root.child', $parser), false),
+        ];
+
+        $strategy = new AffirmativePermissionCheckerStrategy();
+
+        self::assertTrue(
+            $strategy->canPerformAction(
+                new Action('root.child', $parser),
                 new PermissionsCollection($permissions)
             )
         );
