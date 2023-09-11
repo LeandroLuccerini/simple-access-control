@@ -3,6 +3,7 @@
 namespace Test\Szopen\SimpleAccessControl\Domain;
 
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Szopen\SimpleAccessControl\Domain\Action;
 use Szopen\SimpleAccessControl\Domain\Permission;
@@ -28,6 +29,7 @@ class PermissionsCollectionTest extends TestCase
         self::assertCount(0, $collection);
     }
 
+    #[Group('MachineDependingTest')]
     public function testMemoryUsageForTenThousandPermissionsMustBeUnderThreeMb(): void
     {
         $mem = memory_get_usage();
