@@ -19,7 +19,11 @@ class PermissionsCollection implements Iterator, Countable
     public function __construct(private array $permissions)
     {
         if(!empty($permissions)) {
-            Assert::allIsInstanceOf($permissions, Permission::class);
+            Assert::allIsInstanceOf(
+                $permissions,
+                Permission::class,
+                sprintf("All the elements must be of type %s", Permission::class)
+            );
         }
     }
 
